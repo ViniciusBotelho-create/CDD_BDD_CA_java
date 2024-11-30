@@ -1,0 +1,16 @@
+# application-staging.yml
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/staging_db
+    driver-class-name: org.postgresql.Driver
+    username: your_staging_username
+    password: your_staging_password
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+  profiles:
+    active: staging

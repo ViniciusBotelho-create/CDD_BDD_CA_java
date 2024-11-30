@@ -1,0 +1,16 @@
+# application-prod.yml
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/production_db
+    driver-class-name: org.postgresql.Driver
+    username: your_prod_username
+    password: your_prod_password
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+  profiles:
+    active: prod
