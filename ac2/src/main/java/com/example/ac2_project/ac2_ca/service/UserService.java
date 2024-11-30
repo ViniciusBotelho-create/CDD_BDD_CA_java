@@ -2,6 +2,7 @@ package com.example.ac2_project.ac2_ca.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,14 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
-
+    
+    public List<UserDTO> getAllUsers() {
+        List<User> users = userRepository.findAll();
+        return users.stream()
+                    .map(UserDTO::fromEntity)
+                    .collect(Collectors.toList());
+    }
+    
     public List<User> findAll() {
         return userRepository.findAll();
     }
