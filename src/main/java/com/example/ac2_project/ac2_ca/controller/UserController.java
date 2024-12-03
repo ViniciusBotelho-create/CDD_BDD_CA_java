@@ -11,6 +11,7 @@ import com.example.ac2_project.ac2_ca.entity.User;
 import com.example.ac2_project.ac2_ca.service.UserService;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/users")
 public class UserController {
 
@@ -18,16 +19,17 @@ public class UserController {
     private UserService userService;
 
     @GetMapping
-    public ResponseEntity<List<User>> getAllUsers() {
-        return ResponseEntity.ok(userService.findAll());
+    public List<UserDTO> getUsers() {
+        return userService.getAllUsers();  // Chama o serviço para obter os dados
     }
-
+    
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable Long id) {
         return userService.findById(id)
                           .map(ResponseEntity::ok)
                           .orElse(ResponseEntity.notFound().build());
     }
+    
 
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody UserDTO userDTO) {
